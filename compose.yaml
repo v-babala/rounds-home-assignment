@@ -1,0 +1,119 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-rounds}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rounds}
+      POSTGRES_DB: ${POSTGRES_DB:-rounds}
+    ports:
+      - '127.0.0.1:${POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  migrate:
+    build: .
+    command: npm run db:migrate
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-rounds}:${POSTGRES_PASSWORD:-rounds}@db:5432/${POSTGRES_DB:-rounds}
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    build: .
+    command: npm run start -w @rounds/api
+    restart: on-failure
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-rounds}:${POSTGRES_PASSWORD:-rounds}@db:5432/${POSTGRES_DB:-rounds}
+      PORT: 3000
+      SOURCE_BASE_URL: ${SOURCE_BASE_URL:-http://listing-source:4002}
+      POLL_INTERVAL_MS: ${POLL_INTERVAL_MS:-900000}
+      SOURCE_REQUESTS_PER_SECOND: ${SOURCE_REQUESTS_PER_SECOND:-5}
+      SOURCE_CONCURRENCY: ${SOURCE_CONCURRENCY:-10}
+      SOURCE_TIMEOUT_MS: ${SOURCE_TIMEOUT_MS:-10000}
+      LLM_BASE_URL: ${LLM_BASE_URL:-http://mock-llm:4001/v1}
+      LLM_MODEL: ${LLM_MODEL:-mock-llm}
+      LLM_API_KEY: ${LLM_API_KEY:-mock}
+      LLM_TIMEOUT_MS: ${LLM_TIMEOUT_MS:-15000}
+      LLM_CONCURRENCY: ${LLM_CONCURRENCY:-2}
+      LLM_DAILY_CAP: ${LLM_DAILY_CAP:-2000}
+      LLM_MAX_ATTEMPTS: ${LLM_MAX_ATTEMPTS:-3}
+      RETENTION_DAYS: ${RETENTION_DAYS:-90}
+      WORKER_ENABLED: ${WORKER_ENABLED:-true}
+    ports:
+      - '127.0.0.1:${API_PORT:-3000}:3000'
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      listing-source:
+        condition: service_healthy
+      mock-llm:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 5s
+      timeout: 7s
+      retries: 10
+  web:
+    build: .
+    command: npm run dev -w @rounds/web
+    environment:
+      API_PROXY_TARGET: http://api:3000
+      CHOKIDAR_USEPOLLING: 'true'
+    ports:
+      - '127.0.0.1:${WEB_PORT:-5173}:5173'
+    volumes:
+      - ./apps/web/src:/app/apps/web/src
+      - ./apps/web/index.html:/app/apps/web/index.html
+      - ./apps/web/vite.config.ts:/app/apps/web/vite.config.ts
+    depends_on:
+      api:
+        condition: service_healthy
+  listing-source:
+    image: node:24-bookworm-slim
+    working_dir: /source
+    command: node listing-source-server.mjs
+    volumes:
+      - ./instructions-files/listing-source:/source:ro
+    ports:
+      - '127.0.0.1:${SOURCE_PORT:-4002}:4002'
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://localhost:4002/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+  mock-llm:
+    image: python:3.13-alpine
+    command: python -u /source/mock-llm-server.py
+    volumes:
+      - ./instructions-files/mock-llm:/source:ro
+    ports:
+      - '127.0.0.1:${LLM_PORT:-4001}:4001'
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'python',
+          '-c',
+          "import urllib.request; urllib.request.urlopen('http://localhost:4001/health', timeout=2)",
+        ]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+volumes:
+  postgres_data:

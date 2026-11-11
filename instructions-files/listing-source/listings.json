@@ -1,0 +1,47 @@
+{
+  "competitors": {
+    "acme-crm": [
+      { "title": "Acme CRM", "tagline": "Simple CRM for small teams", "price": { "amount": 39, "currency": "USD", "period": "month" }, "description": "Track leads & deals in one place." },
+      { "title": "Acme CRM", "tagline": "Simple CRM for small teams", "price": { "amount": 39, "currency": "USD", "period": "month" }, "description": "Track leads & deals in one place." },
+      { "title": "Acme CRM", "tagline": "Simple CRM for small teams", "price": { "amount": 29, "currency": "USD", "period": "month" }, "description": "Track leads & deals in one place." },
+      { "title": "Acme CRM", "tagline": "The CRM small teams love", "price": { "amount": 29, "currency": "USD", "period": "month" }, "description": "Track leads & deals in one place." },
+      { "title": "Acme CRM", "tagline": "The CRM small teams love", "price": { "amount": 29, "currency": "USD", "period": "month" }, "description": "Track leads & deals in one place." },
+      { "title": "Acme CRM", "tagline": "The CRM small teams love", "price": { "amount": 29, "currency": "USD", "period": "month" }, "description": "Track leads & deals in one place. Now with AI follow-up reminders." },
+      { "title": "Acme CRM", "tagline": "The CRM small teams love", "price": { "amount": 29, "currency": "USD", "period": "month" }, "description": "Track leads & deals in one place. Now with AI follow-up reminders and a free plan for solo founders." },
+      { "title": "Acme CRM", "tagline": "The CRM small teams love", "price": { "amount": 29, "currency": "USD", "period": "month" }, "description": "Track leads & deals in one place. Now with AI follow-up reminders and a free plan for solo founders." }
+    ],
+    "north-analytics": [
+      { "title": "North Analytics", "tagline": "Product analytics without the setup tax", "price": { "amount": 199, "currency": "USD", "period": "month" }, "description": "Event tracking, funnels and retention cohorts. Self-serve, no sales calls." },
+      { "title": "North Analytics", "tagline": "Analytics for product teams that ship weekly", "price": { "amount": 199, "currency": "USD", "period": "month" }, "description": "Event tracking, funnels and retention cohorts. Self-serve, no sales calls." },
+      { "title": "North Analytics", "tagline": "Product analytics without the setup tax", "price": { "amount": 199, "currency": "USD", "period": "month" }, "description": "Event tracking, funnels and retention cohorts. Self-serve, no sales calls." },
+      { "title": "North Analytics", "tagline": "Analytics for product teams that ship weekly", "price": { "amount": 199, "currency": "USD", "period": "month" }, "description": "Event tracking, funnels and retention cohorts. Self-serve, no sales calls." },
+      { "title": "North Analytics", "tagline": "Product analytics without the setup tax", "price": { "amount": 199, "currency": "USD", "period": "month" }, "description": "Event tracking, funnels and retention cohorts. Self-serve, no sales calls." },
+      { "title": "North Analytics", "tagline": "Analytics for product teams that ship weekly", "price": { "amount": 199, "currency": "USD", "period": "month" }, "description": "Event tracking, funnels and retention cohorts. Self-serve, no sales calls." },
+      { "title": "North Analytics", "tagline": "Analytics for product teams that ship weekly", "price": { "amount": 199, "currency": "USD", "period": "month" }, "description": "Event tracking, funnels, retention cohorts and session replay. Self-serve, no sales calls." },
+      { "title": "North Analytics", "tagline": "Analytics for product teams that ship weekly", "price": { "amount": 199, "currency": "USD", "period": "month" }, "description": "Event tracking, funnels, retention cohorts and session replay. Self-serve, no sales calls." }
+    ],
+    "ferry-pay": [
+      { "title": "FerryPay", "tagline": "Payments for marketplaces", "price": { "amount": 49, "currency": "USD", "period": "month" }, "description": "Split payouts, KYC and invoicing for two-sided marketplaces." },
+      { "title": "FerryPay", "tagline": "Payments for marketplaces", "price": { "amount": 49, "currency": "USD", "period": "month" }, "description": "Split payouts, KYC and invoicing for two-sided marketplaces." },
+      { "delisted": true },
+      { "delisted": true },
+      { "title": "FerryPay", "tagline": "Payments for marketplaces", "price": { "amount": 49, "currency": "USD", "period": "month" }, "description": "Split payouts, KYC and invoicing for two-sided marketplaces." },
+      { "title": "FerryPay", "tagline": "Payments for marketplaces", "price": { "amount": 59, "currency": "USD", "period": "month" }, "description": "Split payouts, KYC and invoicing for two-sided marketplaces." },
+      { "title": "FerryPay", "tagline": "Payments for marketplaces and platforms", "price": { "amount": 59, "currency": "USD", "period": "month" }, "description": "Split payouts, KYC, invoicing and tax forms for marketplaces and platforms." },
+      { "title": "FerryPay", "tagline": "Payments for marketplaces and platforms", "price": { "amount": 59, "currency": "USD", "period": "month" }, "description": "Split payouts, KYC, invoicing and tax forms for marketplaces and platforms." }
+    ],
+    "lumen-docs": [
+      { "title": "Lumen Docs", "tagline": "Docs your team will actually read", "price": { "amount": 12, "currency": "USD", "period": "seat_month" }, "description": "A shared wiki with search, templates & page history." }
+    ],
+    "orbit-hr": [
+      { "title": "Orbit HR", "tagline": "HR for teams of 10 to 500", "price": { "amount": 8, "currency": "EUR", "period": "seat_month" }, "description": "Onboarding, time off and reviews in one place." },
+      { "title": "Orbit HR", "tagline": "HR for teams of 10 to 500", "price": { "amount": 8, "currency": "EUR", "period": "seat_month" }, "description": "Onboarding, time off and reviews in one place." },
+      { "title": "Orbit HR", "tagline": "HR for teams of 10 to 500", "price": { "amount": 8, "currency": "EUR", "period": "seat_month" }, "description": "Onboarding, time off, reviews and payroll exports in one place." },
+      { "title": "Orbit HR", "tagline": "HR for teams of 10 to 500", "price": { "amount": 10, "currency": "EUR", "period": "seat_month" }, "description": "Onboarding, time off, reviews and payroll exports in one place." },
+      { "title": "Orbit HR", "tagline": "HR for teams of 10 to 500", "price": { "amount": 96, "currency": "EUR", "period": "year" }, "description": "Onboarding, time off, reviews and payroll exports in one place." },
+      { "title": "Orbit HR", "tagline": "HR for teams of 10 to 500", "price": { "amount": 96, "currency": "EUR", "period": "year" }, "description": "Onboarding, time off, reviews and payroll exports in one place." },
+      { "title": "Orbit HR", "tagline": "HR for growing teams", "price": { "amount": 0, "currency": "EUR", "period": "month" }, "description": "Onboarding, time off, reviews and payroll exports in one place. Free for teams under 10." },
+      { "title": "Orbit HR", "tagline": "HR for growing teams", "price": { "amount": 0, "currency": "EUR", "period": "month" }, "description": "Onboarding, time off, reviews and payroll exports in one place. Free for teams under 10." }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "rounds-home-task",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"npm run dev -w @rounds/api\" \"npm run dev -w @rounds/web\"",
+    "build": "npm run build -w @rounds/shared && npm run build -w @rounds/api && npm run build -w @rounds/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:generate": "npm run db:generate -w @rounds/api",
+    "db:migrate": "npm run db:migrate -w @rounds/api",
+    "db:studio": "npm run db:studio -w @rounds/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
+  }
+}
